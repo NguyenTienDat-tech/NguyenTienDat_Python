@@ -1,30 +1,30 @@
+#in chuỗi
 chuoi = "TV, Laptop, Phone, TV, Tablet, Laptop, Camera"
 
-list = []
-tachchuoi = chuoi.split(",")
-for i in tachchuoi:
-    list.append(i.strip())
+#1. Chuyển chuỗi thành list.
+chuoiList = chuoi.split(", ")
 
-print("xoa trung lap")
-names = set(list)
-print(names)
+#2. Loại bỏ trùng lặp bằng set, sau đó chuyển lại thành tuple. In ra tuple
+chuoiSet = set(chuoiList) #xóa bỏ trùng lặp
+chuoiTuple = tuple(chuoiSet) #thay thành ngoặc đơn
+print("chuoi sau khi xoa bo trung lap:")
+print(chuoiTuple)
 
-dem = 0
-for i in names:
-    dem += 1
-print(f"so san pham co trong chuoi la: {dem}")
+#3. Đếm số loại hàng hoá (len() tuple) và in ra số loại hàng hóa
+chuoiDem = len(chuoiTuple) #đếm chuỗi
+print(f"tong so san pham la: {chuoiDem}")
 
+#4. Có 3 sản phẩm bán chạy là :
+BanChay = {"Phone", "Laptop", "Smartwatch"}
 
-print("san pham ban nhay")
-SanPhamBanNhay = {"Phone", "Laptop", "Smartwatch"}
-print(names.intersection(SanPhamBanNhay), end=" ")
+#5. In ra danh sách loại sản phẩm có trong kho và bán chạy (intersection).
+BanChaySet = set()
+for i in chuoiTuple:
+    if i in BanChay:
+        BanChaySet.add(i)
+print("san pham ban chay: ")
+print(chuoiSet.intersection(BanChaySet))
 
-print()
-
-print("Sản phẩm chỉ có trong kho nhưng không bán chạy:")
-print(names.difference(SanPhamBanNhay), end=" ")
-
-
-
-
-
+#6. In ra loại sản phẩm chỉ có trong kho nhưng không bán chạy (difference).
+print("san pham ban khong chay: ")
+print(chuoiSet.difference(BanChaySet))
